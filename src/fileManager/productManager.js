@@ -34,6 +34,8 @@ class productManager {
     }
   }
 
+  
+
 }
 
 export default productManager;
