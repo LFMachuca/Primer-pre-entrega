@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 
 class productManager {
   constructor() {
@@ -8,17 +8,20 @@ class productManager {
   //ALMACENAR UN PRODUCTO
  async addProduct(product) {
     try {
-        let product= await this.readProducts();
+        let products= await this.readProducts();
         
-        this.products.push(product);
+        products.push(product);
 
-        await fs.WriteFile(this.filePath, JSON.stringify(this.products, null, 2));
+        await fs.writeFile(this.filePath, JSON.stringify(this.products, null, 2));
 
         console.log('Producto agregado');
     } catch (error) {
         console.error('Error en agregar un producto', error);
     }
   }
+async getProducts(){
+ return await this.readProducts();
+}
 
   async readProducts() {
     try {
